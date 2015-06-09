@@ -6,12 +6,11 @@
 
     'use strict';
 
-    var $        = require('jquery');
     var Backbone = require('backbone');
     var template = require('../templates/todoItem');
 
 
-    var TodoView = Backbone.View.extend({
+    module.exports = Backbone.View.extend({
 
         state: {
             editing: false
@@ -25,7 +24,7 @@
         },
 
         initialize: function () {
-            console.log('TodoView');
+            console.log('Todo View');
         },
 
         render: function () {
@@ -36,8 +35,8 @@
         edit: function () {
             console.log(this.model.toJSON());
 
-            var description = this.model.get('description'),
-                date        = this.model.get('date');
+            var description    = this.model.get('description'),
+                date           = this.model.get('date');
 
             this.$('.todo-description > span').hide();
             this.$('.input-description').val(description).show();
@@ -63,7 +62,5 @@
 
 
     });
-
-    module.exports = TodoView;
 
 })();

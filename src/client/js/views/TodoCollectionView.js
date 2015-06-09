@@ -9,7 +9,7 @@
     var Backbone = require('backbone');
     var TodoView = require('./TodoView');
 
-    var TodoCollectionView = Backbone.View.extend({
+    module.exports = Backbone.View.extend({
 
         tagName: 'ul',
 
@@ -44,8 +44,5 @@
         }
 
     });
-
-
-    module.exports = TodoCollectionView;
 
 })();
