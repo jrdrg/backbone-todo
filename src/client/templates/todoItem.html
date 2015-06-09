@@ -1,4 +1,14 @@
-<div>
-    {{description}}
-    {{date}}
+<div class="todo-item">
+    <span class="todo-description">
+        <span>{{description}}</span>
+        <input type="text" class="input-description" />
+    </span>
+    <span class="todo-date">
+        <span>{{date}}</span>
+        <input type="text" class="input-date" />
+    </span>
+    <button class="edit">Edit</button>
+    <button class="delete">Delete</button>
+    <button class="save">Save</button>
+    <button class="cancel">Cancel</button>
 </div>

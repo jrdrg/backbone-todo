@@ -1,45 +1,52 @@
 /**
  * Created by john on 6/7/15.
  */
-var Backbone           = require('backbone');
-var TodoCollectionView = require('./TodoCollectionView');
-var data               = require('./data');
-var $                  = require('jquery');
+(function () {
 
-var Router = Backbone.Router.extend({
+    'use strict';
 
-    initialize: function () {
-
-    },
-
-    routes: {
-        ''        : 'home',
-        'add'     : 'add',
-        'edit/:id': 'edit'
-    },
-
-    home: function () {
-        console.log('home');
-
-        var todos = data.todos;
-        var view  = new TodoCollectionView({
-            collection: todos
-        });
-
-        $('#todo-container')
-            .empty()
-            .append(view.render().el);
-    },
-
-    add: function () {
-        console.log('add');
-    },
-
-    edit: function (id) {
-        console.log('edit ' + id);
-    }
+    var Backbone           = require('backbone');
+    var TodoCollectionView = require('./views/TodoCollectionView');
+    var $                  = require('jquery');
+    var data               = require('./data');
 
 
-});
+    var Router = Backbone.Router.extend({
 
-module.exports = Router;
+        initialize: function () {
+
+        },
+
+        routes: {
+            ''        : 'home',
+            'add'     : 'add',
+            'edit/:id': 'edit'
+        },
+
+        home: function () {
+            console.log('home');
+
+            var view = new TodoCollectionView({ collection: data.todos });
+
+            $('#todo-container')
+                .html(view.render().el);
+
+            data.todos.add([
+                {description: 'Testing again'}
+            ]);
+        },
+
+        add: function () {
+            console.log('add');
+        },
+
+        edit: function (id) {
+            console.log('edit ' + id);
+        }
+
+
+    });
+
+    module.exports = Router;
+
+})();

@@ -7,6 +7,8 @@ var nodemon    = require('gulp-nodemon');
 var webpack    = require('gulp-webpack');
 var wrap       = require('gulp-wrap');
 var handlebars = require('gulp-handlebars');
+var jshint     = require('gulp-jshint');
+var stylish    = require('jshint-stylish');
 
 
 gulp.task('nodemon',
@@ -31,7 +33,7 @@ gulp.task('webpack',
     function () {
         return gulp.src('src/client/js/index.js')
             .pipe(webpack({
-                output: {
+                output : {
                     filename: 'out.js'
                 },
                 resolve: {
@@ -53,11 +55,20 @@ gulp.task('templates',
     });
 
 
-gulp.task('default', ['compile-less', 'webpack', 'templates']);
+gulp.task('jshint',
+    function () {
+        return gulp.src(['src/client/js/**/*.js', '!src/client/js/templates/**/*.js'])
+            .pipe(jshint())
+            .pipe(jshint.reporter(stylish));
+    });
+
+
+gulp.task('default', ['compile-less', 'webpack', 'jshint']);
 
 
 gulp.task('watch',
     function () {
-        gulp.watch(['src/client/js/**/*.js', '!src/client/js/out.js'], ['webpack']);
+        gulp.watch(['src/client/js/**/*.js', '!src/client/js/out.js'], ['webpack', 'jshint']);
         gulp.watch(['src/client/less/**/*.less'], ['compile-less']);
+        gulp.watch(['src/client/templates/**/*.html'], ['templates']);
     });

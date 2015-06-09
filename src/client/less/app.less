@@ -6,4 +6,45 @@
 
 body {
   font-size: 1em;
+  font-family: sans-serif;
+}
+
+.todo-field {
+  display: inline-block;
+}
+
+.todo-item {
+  button.cancel {
+    display: none;
+  }
+
+  button.save {
+    display: none;
+  }
+}
+
+.todo-description {
+  .todo-field;
+  width: 30%;
+
+  > span {
+    display: inline;
+  }
+
+  .input-description {
+    display: none;
+  }
+}
+
+.todo-date {
+  .todo-field;
+  width: 30%;
+
+  > span {
+    display: inline;
+  }
+
+  .input-date {
+    display: none;
+  }
 }

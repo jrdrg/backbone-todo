@@ -1,14 +1,19 @@
 /**
  * Created by john on 6/8/15.
  */
+(function () {
 
-var TodoCollection = require('./TodoCollection');
+    'use strict';
 
-var todos = new TodoCollection([
-    { 'description': 'Test todo', 'date': new Date() },
-    { 'description': 'Todo number 2', 'date': '2015-06-20' }
-]);
+    var TodoCollection = require('./models/TodoCollection');
 
-module.exports = {
-    'todos': todos
-};
+    var todos = new TodoCollection([
+        { 'description': 'Test todo', 'date': new Date() },
+        { 'description': 'Todo number 2', 'date': '2015-06-20' }
+    ]);
+
+    module.exports = {
+        'todos': todos
+    };
+
+})();
