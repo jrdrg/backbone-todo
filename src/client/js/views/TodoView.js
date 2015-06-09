@@ -36,24 +36,28 @@
         edit: function () {
             console.log(this.model.toJSON());
 
-            $('.todo-description > span').css('display', 'none');
-            $('.input-description').css('display', 'inline');
+            var description = this.model.get('description'),
+                date        = this.model.get('date');
 
-            $('.edit').css('display', 'none');
-            $('.delete').css('display', 'none');
-            $('.save').css('display', 'inline');
-            $('.cancel').css('display', 'inline');
+            this.$('.todo-description > span').hide();
+            this.$('.input-description').val(description).show();
+
+            this.$('.edit').hide();
+            this.$('.delete').hide();
+            this.$('.save').show();
+            this.$('.cancel').show();
             this.state.editing = true;
+
         },
 
         cancelEdit: function () {
-            $('.todo-description > span').css('display', 'inline');
-            $('.input-description').css('display', 'none');
+            this.$('.todo-description > span').show();
+            this.$('.input-description').hide();
 
-            $('.edit').css('display', 'inline');
-            $('.delete').css('display', 'inline');
-            $('.save').css('display', 'none');
-            $('.cancel').css('display', 'none');
+            this.$('.edit').show();
+            this.$('.delete').show();
+            this.$('.save').hide();
+            this.$('.cancel').hide();
             this.state.editing = false;
         }
 
