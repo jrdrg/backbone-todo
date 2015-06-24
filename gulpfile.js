@@ -3,6 +3,7 @@
  */
 var gulp       = require('gulp');
 var less       = require('gulp-less');
+var sass       = require('gulp-sass');
 var nodemon    = require('gulp-nodemon');
 var webpack    = require('gulp-webpack');
 var wrap       = require('gulp-wrap');
@@ -24,7 +25,14 @@ gulp.task('compile-less',
     function () {
         return gulp.src('src/client/less/**/*.less')
             .pipe(less('app.css'))
-            .pipe(gulp.dest('src/public'))
+            .pipe(gulp.dest('src/public'));
+    });
+
+gulp.task('compile-sass',
+    function() {
+        return gulp.src('src/client/scss/**/*.scss')
+            .pipe(sass('app.css'))
+            .pipe(gulp.dest('src/public'));
     });
 
 
@@ -38,7 +46,10 @@ gulp.task('webpack',
                 },
                 resolve: {
                     alias: {
-                        'handlebars': 'handlebars/runtime.js'
+                        'handlebars': 'handlebars/runtime.js',
+                        'jquery'    : 'jquery/dist/jquery.min.js',
+                        //'underscore': 'underscore/underscore-min.js',
+                        'backbone'  : 'backbone/backbone-min.js'
                     }
                 }
             }))
@@ -63,12 +74,13 @@ gulp.task('jshint',
     });
 
 
-gulp.task('default', ['compile-less', 'webpack', 'jshint']);
+gulp.task('default', ['compile-sass', 'webpack', 'jshint']);
 
 
 gulp.task('watch',
     function () {
         gulp.watch(['src/client/js/**/*.js', '!src/client/js/out.js'], ['webpack', 'jshint']);
-        gulp.watch(['src/client/less/**/*.less'], ['compile-less']);
+        //gulp.watch(['src/client/less/**/*.less'], ['compile-less']);
+        gulp.watch(['src/client/scss/**/*.scss'], ['compile-sass']);
         gulp.watch(['src/client/templates/**/*.html'], ['templates']);
     });

@@ -1,0 +1,50 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1em;
+  font-family: sans-serif;
+}
+
+@mixin todo-field {
+  display: inline-block;
+}
+
+.todo-item {
+  button.cancel {
+    display: none;
+  }
+
+  button.save {
+    display: none;
+  }
+}
+
+.todo-description {
+  @include todo-field;
+  width: 30%;
+
+  > span {
+    display: inline;
+  }
+
+  .input-description {
+    display: none;
+  }
+}
+
+.todo-date {
+  @include todo-field;
+  width: 30%;
+
+  > span {
+    display: inline;
+  }
+
+  .input-date {
+    display: none;
+  }
+}
