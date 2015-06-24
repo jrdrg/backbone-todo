@@ -6,6 +6,7 @@
 
     'use strict';
 
+    var _        = require('lodash');
     var Backbone = require('backbone');
     var TodoView = require('./TodoView');
 
@@ -17,6 +18,21 @@
             console.log('TodoCollectionView');
 
             this.collection.on('add', this.addItem, this);
+            this.collection.on('remove', this.removeItem, this);
+
+            this.collection.fetch({
+                success: function (response) {
+                    console.log(response);
+
+                    _.each(response, function (i) {
+                        console.log(i);
+                    });
+                },
+
+                error: function (xhr, error) {
+                    console.log(error);
+                }
+            });
         },
 
         render: function () {
@@ -41,6 +57,10 @@
 
             this.$el.append(view.render().el);
             return this;
+        },
+
+        removeItem: function (todo) {
+            console.log('Removing ' + JSON.stringify(todo));
         }
 
     });

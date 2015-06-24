@@ -1,15 +1,16 @@
 /*	main application */
-var express = require('express');
-var todo    = require('./src/server/routes/todo');
+var express    = require('express');
+var todo       = require('./src/server/routes/todo');
+var bodyParser = require('body-parser');
 
 
 var app = express();
+app.use(bodyParser.json());
 app.use('/todo', todo);
-
 
 app.use('/public', express.static(__dirname + '/src/public'));
 app.all('/*', function (req, res, next) {
-    res.sendFile('src/index.html', {root: __dirname});
+    res.sendFile('src/index.html', { root: __dirname });
 });
 
 

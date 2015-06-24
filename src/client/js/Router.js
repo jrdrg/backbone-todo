@@ -14,10 +14,6 @@
 
     module.exports = Backbone.Router.extend({
 
-        initialize: function () {
-
-        },
-
         routes: {
             ''        : 'home',
             'add'     : 'add',
@@ -27,19 +23,6 @@
         home: function () {
             var view = new MainTodoListView({ collection: data.todos });
             $('#page')
-                .html(view.render().el);
-
-            data.todos.add([
-                { description: 'Testing again' }
-            ]);
-        },
-
-        home2: function () {
-            console.log('home');
-
-            var view = new TodoCollectionView({ collection: data.todos });
-
-            $('#todo-container')
                 .html(view.render().el);
 
             data.todos.add([

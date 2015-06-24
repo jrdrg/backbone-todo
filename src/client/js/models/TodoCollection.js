@@ -12,7 +12,17 @@ var TodoCollection = Backbone.Collection.extend({
     url: '/todo',
 
     initialize: function () {
-        console.log('Todo initialized');
+        console.log('TodoCollection initialized');
+        this.on('change', this.logItems, this);
+        this.on('update', this.logUpdate, this);
+    },
+
+    logItems: function() {
+        console.log('logItems');
+    },
+
+    logUpdate: function() {
+        console.log('logUpdate');
     }
 });
 
